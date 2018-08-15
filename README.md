@@ -27,6 +27,22 @@ Available tags (based on only *Debian 9/stretch* packages, also for Nvidia CUDA 
 - `7.5.18-2` [2016-07-20]: *CUDA Toolkit* <small>(7.5.18-2)</small> + *cuDNN* <small>(4.0.7)</small> + *CUDA Driver* <small>(352.79-8)</small>
 
 
+Makefile Usage
+==============
+
+If you want to use the GPU, first `make build-cuda` then `make build-gpu`.
+
+If you just want to use CPU, `make build-cpu`.
+
+```bash
+$ make help
+help                           This help.
+build-cuda                     Build Debian + Cuda Docker
+build-gpu                      Build Python3 + TensorFlow + Jupyter + GPU Docker
+build-cpu                      Build Python3 + TensorFlow + Jupyter + CPU Docker
+```
+
+
 Usage
 =====
 
