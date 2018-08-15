@@ -3,6 +3,7 @@ GPU_DOCKER=alex-keras-gpu
 GPU_DOCKER_V=0.0.1
 CPU_DOCKER=alex-keras-cpu
 CPU_DOCKER_V=0.0.1
+SRC?=$(shell dirname `pwd`)
 
 # HELP
 # This will output the help for each task
@@ -21,7 +22,13 @@ build-cuda: ## Build Debian + Cuda Docker
 	docker build -t $(DEB_CUDA_DOCKER) -f dockerfiles/Dockerfile.deb-cuda .
 
 build-gpu: build-cuda ## Build Python3 + TensorFlow + Jupyter + GPU Docker
-	docker build -t $(GPU_DOCKER):$(GPU_DOCKER_V) -t $(GPU_DOCKER):latest -f dockerfiles/ .
+	docker build -t $(GPU_DOCKER):$(GPU_DOCKER_V) -t $(GPU_DOCKER):latest -f dockerfiles/Dockerfile.py3-tf-jypr-gpu .
 
 build-cpu: ## Build Python3 + TensorFlow + Jupyter + CPU Docker
-	docker build -t $(CPU_DOCKER):$(CPU_DOCKER_V) -t $(CPU_DOCKER):latest -f dockerfiles/ .
+	docker build -t $(CPU_DOCKER):$(CPU_DOCKER_V) -t $(CPU_DOCKER):latest -f dockerfiles/Dockerfile.py3-tf-jypr-cpu .
+
+notebook-gpu:
+	docker run -p 8888 -v $(SRC):/srv $(GPU_DOCKER)
+
+notebook-cpu:
+	docker run -d -p 888888 -v $(SRC):/srv $(CPU_DOCKER)

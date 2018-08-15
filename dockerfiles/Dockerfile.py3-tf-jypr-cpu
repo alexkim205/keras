@@ -95,8 +95,20 @@ RUN useradd --create-home --uid 1000 --user-group --shell /bin/bash user \
 RUN  useradd admin && echo "admin:admin" | chpasswd && adduser admin sudo
 USER user
 
+# publicly accessible on any IP
+ENV IP=*
 # accessible only from localhost
-ENV IP=127.0.0.1
+#ENV IP=127.0.0.1
+
+# only password authentication (password: keras)
+#ENV PASSWD='sha1:98b767162d34:8da1bc3c75a0f29145769edc977375a373407824'
+#unset ENV TOKEN=
+# password and token authentication (password and token: keras)
+ENV PASSWD='sha1:98b767162d34:8da1bc3c75a0f29145769edc977375a373407824'
+ENV TOKEN='keras'
+# random token authentication
+#unset ENV PASSWD=
+#unset ENV TOKEN=
 
 EXPOSE 8888
 WORKDIR /srv/
@@ -104,5 +116,8 @@ CMD /bin/bash -c 'jupyter notebook \
     --NotebookApp.open_browser=False \
     --NotebookApp.allow_root=True \
     --NotebookApp.ip="$IP" \
+    ${PASSWD+--NotebookApp.password=\"$PASSWD\"} \
+    ${TOKEN+--NotebookApp.token=\"$TOKEN\"} \
+    --NotebookApp.allow_password_change=False \
     --JupyterWebsocketPersonality.list_kernels=True \
     "$@"'
