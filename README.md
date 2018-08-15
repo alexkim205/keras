@@ -48,5 +48,7 @@ Reference
 =========
 
 DockerHub - [gw000/keras](https://hub.docker.com/r/gw000/keras/)
+
 GitHub (debian GPU image) - [gw0/docker-debian-cuda](https://github.com/gw0/docker-debian-cuda)
+
 GitHub (keras) - [gw0/docker-keras](https://github.com/gw0/docker-keras)
