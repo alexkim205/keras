@@ -95,10 +95,8 @@ RUN useradd --create-home --uid 1000 --user-group --shell /bin/bash user \
 RUN  useradd admin && echo "admin:admin" | chpasswd && adduser admin sudo
 USER user
 
-# publicly accessible on any IP
-ENV IP=*
 # accessible only from localhost
-#ENV IP=127.0.0.1
+ENV IP=*
 
 # only password authentication (password: keras)
 #ENV PASSWD='sha1:98b767162d34:8da1bc3c75a0f29145769edc977375a373407824'
