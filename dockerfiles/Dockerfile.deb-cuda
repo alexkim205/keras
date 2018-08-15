@@ -38,4 +38,3 @@ RUN apt-get update -qq \
 RUN ls /usr/local/cuda-9.1/targets/x86_64-linux/lib/stubs/* | xargs -I{} ln -s {} /usr/lib/x86_64-linux-gnu/ \
  && ln -s libcuda.so /usr/lib/x86_64-linux-gnu/libcuda.so.1 \
  && ln -s libnvidia-ml.so /usr/lib/x86_64-linux-gnu/libnvidia-ml.so.1
-
