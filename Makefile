@@ -31,4 +31,4 @@ notebook-gpu:
 	docker run -p 8888 -v $(SRC):/srv $(GPU_DOCKER)
 
 notebook-cpu:
-	docker run -d -p 888888 -v $(SRC):/srv $(CPU_DOCKER)
+	docker run -d -p 8888 -v $(SRC):/srv $(CPU_DOCKER)
